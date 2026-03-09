@@ -31,26 +31,31 @@
 - 리스트 컴프리헨션을 사용하면 간결하게 작성할 수 있습니다
 """
 
+from networkx import average_clustering
+
+
 def find_above_average_students(students):
     """
     평균 점수 이상인 학생들을 찾는 함수
-    
+
     Args:
         students: 학생 정보 딕셔너리 리스트
-    
+
     Returns:
         tuple: (평균 점수, 평균 이상 학생 이름 리스트)
     """
     # TODO: 모든 학생의 점수를 리스트로 추출하세요
-    pass
-    
+    all_scores = [s["score"] for s in students]
+
     # TODO: 평균 점수를 계산하세요
-    pass
-    
+    sum_scores = sum(all_scores)
+    average = sum_scores / len(all_scores)
+
     # TODO: 평균 이상인 학생들의 이름을 리스트로 추출하세요
-    pass
-    
+    above_average_students = [s for s in all_scores if s >= average]
+
     return average, above_average_students
+
 
 # 테스트 케이스
 if __name__ == "__main__":
@@ -59,23 +64,21 @@ if __name__ == "__main__":
         {"name": "Alice", "score": 85},
         {"name": "Bob", "score": 92},
         {"name": "Charlie", "score": 78},
-        {"name": "David", "score": 95}
+        {"name": "David", "score": 95},
     ]
-    
+
     avg, students = find_above_average_students(students1)
     print(f"평균 점수: {avg}")
     print(f"평균 이상 학생: {students}")
     print()
-    
+
     # 테스트 케이스 2
     students2 = [
         {"name": "Emma", "score": 70},
         {"name": "Frank", "score": 85},
-        {"name": "Grace", "score": 90}
+        {"name": "Grace", "score": 90},
     ]
-    
+
     avg, students = find_above_average_students(students2)
     print(f"평균 점수: {avg}")
     print(f"평균 이상 학생: {students}")
-
-
