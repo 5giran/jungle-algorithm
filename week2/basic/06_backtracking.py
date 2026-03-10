@@ -44,14 +44,19 @@ def combinations(n, k):
             current_combination: 현재까지 선택한 숫자들
         """
         # TODO: base case - k개를 모두 선택했으면 결과에 추가
-        pass
+        if len(current_combination) == k: # 현재까지 선택한 숫자들의 갯수가 선택할 개수가 되면
+            result.append(current_combination[:]) # 리스트는 참조전달 - 슬라이싱으로 리스트 복사
         
         # TODO: start부터 n까지 숫자를 하나씩 시도
         ## TODO: 백트랙킹 3단계 구현
         ## 1. 선택(Choose)
         ## 2. 탐색(Explore)
         ## 3. 취소(Unchoose)
-        pass
+        for i in range(start, n+1):
+            current_combination.append(i)
+            backtrack(i+1, current_combination)
+            current_combination.pop() # 재귀가 끝나고 선택 안 한 상태로 되돌아감, 리셋
+            
     
     backtrack(1, [])
     return result
